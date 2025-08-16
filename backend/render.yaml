@@ -1,0 +1,61 @@
+services:
+  - type: web
+    name: playsplit-backend
+    env: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: playsplit-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: CLIENT_URL
+        value: https://playsplit.vercel.app
+    
+    # Health check configuration
+    healthCheck:
+      path: /health
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    # Auto-deploy configuration
+    autoDeploy: true
+    
+    # Resource configuration
+    disk:
+      name: playsplit-disk
+      size: 1GB
+      mountPath: /opt/render/project/storage
+    
+    # Environment-specific settings
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+      targetCPUPercentage: 70
+      targetMemoryPercentage: 80
+
+databases:
+  - name: playsplit-db
+    databaseName: playsplit
+    plan: starter

@@ -1,0 +1,318 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+
+/* Custom base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans antialiased;
+    @apply bg-gradient-to-br from-grass-900 via-green-800 to-grass-700;
+    @apply text-white overflow-x-hidden;
+    background-attachment: fixed;
+    background-image: 
+      radial-gradient(ellipse at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%),
+      linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900/20;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-grass-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-grass-500;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-grass-400 text-grass-900;
+  }
+
+  /* Focus styles */
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-grass-400;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  /* Glass morphism effect */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+    @apply shadow-glass;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/20 border border-white/10;
+    @apply shadow-glass;
+  }
+
+  /* Neon effect */
+  .neon {
+    @apply text-grass-400;
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .neon-border {
+    @apply border-grass-400 shadow-neon;
+  }
+
+  /* Floating elements */
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating-delayed {
+    animation: float 6s ease-in-out 2s infinite;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-grass-600 hover:bg-grass-500 text-white font-medium px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 transform hover:scale-105;
+    @apply shadow-lg hover:shadow-xl;
+    @apply focus:ring-4 focus:ring-grass-500/50;
+  }
+
+  .btn-secondary {
+    @apply bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-medium px-6 py-3 rounded-lg;
+    @apply border border-white/20 hover:border-white/30;
+    @apply transition-all duration-300 transform hover:scale-105;
+    @apply shadow-lg hover:shadow-xl;
+  }
+
+  .btn-ghost {
+    @apply text-grass-400 hover:text-grass-300 font-medium px-6 py-3 rounded-lg;
+    @apply hover:bg-white/10 backdrop-blur-md;
+    @apply transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply border-2 border-grass-600 text-grass-600 hover:bg-grass-600 hover:text-white;
+    @apply font-medium px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 transform hover:scale-105;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6;
+    @apply shadow-glass hover:shadow-glass-lg;
+    @apply transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply transform hover:scale-105 hover:-translate-y-2;
+    @apply hover:shadow-2xl hover:shadow-grass-500/20;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20;
+    @apply rounded-lg text-white placeholder-white/60;
+    @apply focus:border-grass-400 focus:ring-2 focus:ring-grass-400/30;
+    @apply transition-all duration-300;
+  }
+
+  .input-field::placeholder {
+    @apply text-white/60;
+  }
+
+  /* Loading spinner */
+  .spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-b-2 border-grass-400;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-grass-400 to-green-300 bg-clip-text text-transparent;
+  }
+
+  /* Floating action button */
+  .fab {
+    @apply fixed bottom-6 right-6 w-14 h-14 bg-grass-600 hover:bg-grass-500;
+    @apply rounded-full shadow-lg hover:shadow-xl;
+    @apply flex items-center justify-center text-white;
+    @apply transition-all duration-300 transform hover:scale-110;
+    @apply z-50;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
+
+  .badge-info {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  /* Toast notifications */
+  .toast {
+    @apply glass rounded-lg p-4 shadow-xl;
+    @apply animate-slideInRight;
+  }
+
+  /* Modal styles */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-50;
+    @apply flex items-center justify-center p-4;
+  }
+
+  .modal-content {
+    @apply glass rounded-2xl p-6 max-w-md w-full;
+    @apply animate-scaleIn;
+  }
+
+  /* Field background pattern */
+  .field-bg {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+      linear-gradient(45deg, rgba(34, 197, 94, 0.05) 0%, transparent 100%);
+    background-size: 200px 200px, 300px 300px, 100% 100%;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  /* Responsive text */
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
+  }
+
+  .title-responsive {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  /* Match card specific styles */
+  .match-card {
+    @apply card card-hover;
+    @apply relative overflow-hidden;
+  }
+
+  .match-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-grass-600/20 to-transparent;
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  .match-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Payment status indicators */
+  .status-pending {
+    @apply text-yellow-400 bg-yellow-400/10;
+  }
+
+  .status-paid {
+    @apply text-green-400 bg-green-400/10;
+  }
+
+  .status-failed {
+    @apply text-red-400 bg-red-400/10;
+  }
+
+  /* Floating sports items */
+  .sports-item {
+    @apply absolute opacity-20 pointer-events-none;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .sports-item:nth-child(2n) {
+    animation-delay: -2s;
+  }
+
+  .sports-item:nth-child(3n) {
+    animation-delay: -4s;
+  }
+
+  .sports-item:nth-child(4n) {
+    animation-delay: -6s;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(45deg, rgba(34, 197, 94, 0.5), rgba(16, 185, 129, 0.5)) 1;
+  }
+
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Dark mode adjustments */
+.dark {
+  @apply text-white;
+}
+
+.dark .glass {
+  @apply bg-black/20 border-white/10;
+}
+
+.dark .card {
+  @apply bg-black/20 border-white/10;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply bg-white text-black;
+  }
+  
+  .glass, .card {
+    @apply bg-white border-gray-300;
+  }
+}
