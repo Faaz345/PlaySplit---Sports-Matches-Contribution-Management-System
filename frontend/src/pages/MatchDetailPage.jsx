@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
@@ -15,7 +15,6 @@ import {
   FaUserMinus,
   FaCreditCard,
   FaShare,
-  FaFlag,
   FaStar,
   FaPhone,
   FaEnvelope,
@@ -23,8 +22,7 @@ import {
   FaTrash,
   FaCheckCircle,
   FaExclamationCircle,
-  FaCopy,
-  FaComments
+  FaCopy
 } from 'react-icons/fa';
 import api from '../config/api';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
@@ -41,7 +39,7 @@ const MatchDetailPage = () => {
 
   useEffect(() => {
     fetchMatchDetails();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (match && currentUser) {

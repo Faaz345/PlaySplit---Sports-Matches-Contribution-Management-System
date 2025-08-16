@@ -130,3 +130,4 @@ Thumbs.db
 # Service account keys (keep these secure!)
 *service-account*.json
 *firebase-adminsdk*.json
+.vercel

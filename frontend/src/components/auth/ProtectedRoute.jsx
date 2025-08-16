@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import LoadingSpinner from '../ui/LoadingSpinner';
 
 const ProtectedRoute = ({ children, adminOnly = false }) => {
-  const { currentUser, userProfile, loading, isAuthenticated, isAdmin } = useAuth();
+  const { userProfile, loading, isAuthenticated, isAdmin } = useAuth();
   const location = useLocation();
 
   // Show loading spinner while checking authentication

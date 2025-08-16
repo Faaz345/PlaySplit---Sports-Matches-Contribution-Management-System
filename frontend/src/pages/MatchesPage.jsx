@@ -13,8 +13,7 @@ import {
   FaUsers,
   FaRupeeSign,
   FaEye,
-  FaTimes,
-  FaSpinner
+  FaTimes
 } from 'react-icons/fa';
 import api from '../config/api';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
@@ -38,7 +37,7 @@ const MatchesPage = () => {
 
   useEffect(() => {
     filterMatches();
-  }, [matches, searchTerm, filters]);
+  }, [matches, searchTerm, filters]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchMatches = async () => {
     try {

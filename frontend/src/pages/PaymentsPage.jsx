@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { 
   FaCreditCard, 
-  FaRupeeSign, 
-  FaCalendarAlt,
+  FaRupeeSign,
   FaCheck,
   FaExclamationTriangle,
   FaSpinner,
@@ -46,7 +45,7 @@ const PaymentsPage = () => {
   useEffect(() => {
     filterPayments();
     calculateStats();
-  }, [payments, searchTerm, filters]);
+  }, [payments, searchTerm, filters]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchPayments = async () => {
     try {
